@@ -16,13 +16,10 @@ pipeline {
     }
     stage ('Check-Git-Secrets') {
       steps {
-        sh 'docker run hello-world'
-        sh 'usermod -a -G docker jenkins'
-        sh 'usermod -a -G docker admin'
-        sh 'chmod 664 /var/run/docker.sock'
-        sh 'chmod 777 /var/run'
-        sh 'docker pull gesellix/trufflehog'
-        sh 'docker run -t getsellix/trufflehog --json https://github.com/asandrapati/testProject.git > trufflehog'
+        sh 'rm trufflehog || true'
+        sh 'docker run gesellix/trufflehog --json  https://github.com/asandrapati/testProject.git > trufflehog'
+        sh 'cat trufflehog'
+        
       }
     }
   }
