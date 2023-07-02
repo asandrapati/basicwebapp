@@ -18,7 +18,7 @@ pipeline {
       steps {
         sh 'pwd'
         sh 'cd /var/run'
-        sh 'chown root:docker /var/run'
+        sh 'chown root:docker /var/run/docker.sock'
         sh 'docker run gesellix/trufflehog --json  https://github.com/asandrapati/testProject.git > trufflehog'
         sh 'cat trufflehog'
         
