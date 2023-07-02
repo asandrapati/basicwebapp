@@ -14,5 +14,11 @@ pipeline {
         sh 'mvn clean package'
        }
     }
+    stage ('Check-Git-Secrets') {
+      steps {
+        sh 'docker pull gesellix/trufflehog'
+        sh 'docker run -t getsellix/trufflehog --json https://github.com/asandrapati/testProject.git > trufflehog
+      }
+    }
   }
 }
