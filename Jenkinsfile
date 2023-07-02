@@ -17,7 +17,6 @@ pipeline {
     stage ('Check-Git-Secrets') {
       steps {
         sh 'docker run hello-world'
-        sh 'docker pull gesellix/trufflehog'
         sh 'docker run -t getsellix/trufflehog --json https://github.com/asandrapati/testProject.git > trufflehog'
       }
     }
