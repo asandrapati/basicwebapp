@@ -16,13 +16,13 @@ pipeline {
     }
     stage ('Check-Git-Secrets') {
       steps {
-        sh 'sudo docker run hello-world -S'
-        sh 'sudo usermod -a -G docker jenkins'
-        sh 'sudo usermod -a -G docker admin'
-        sh 'sudo chmod 664 /var/run/docker.sock'
-        sh 'sudo chmod 777 /var/run'
-        sh 'sudo docker pull gesellix/trufflehog -S'
-        sh 'sudo docker run -t getsellix/trufflehog --json https://github.com/asandrapati/testProject.git > trufflehog'
+        sh 'docker run hello-world'
+        sh 'usermod -a -G docker jenkins'
+        sh 'usermod -a -G docker admin'
+        sh 'chmod 664 /var/run/docker.sock'
+        sh 'chmod 777 /var/run'
+        sh 'docker pull gesellix/trufflehog'
+        sh 'docker run -t getsellix/trufflehog --json https://github.com/asandrapati/testProject.git > trufflehog'
       }
     }
   }
